@@ -21,6 +21,7 @@ void freeI(int*);
 char* initC(int);
 int* initI(int);
 void eje2();
+void eje3();
 
 int main(){
     cout<<"Bienvenido"<<endl;
@@ -56,12 +57,20 @@ int main(){
             eje2();
         }
         if(op==3){
+            cout<<"--------------------------------------"<<endl;
+            cout<<"Bienvenido al ejercicio 3"<<endl;
+            cout<<"--------------------------------------"<<endl;
+            eje3();
+            cout<<"--------------------------------------"<<endl;
         }
         if(op==4){
             salir=0;
         }
     }
     return 0;
+}
+void eje3(){
+    cout<<"No terminado :("<<endl;
 }
 
 void eje2(){
