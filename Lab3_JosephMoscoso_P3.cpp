@@ -13,16 +13,20 @@ using std::to_string;
 
 #include<cstring>
 
+#include<stdlib.h>
+
 void eje1(char*);
 void freeC(char*);
+void freeI(int*);
 char* initC(int);
+int* initI(int);
 void eje2();
 
 int main(){
     cout<<"Bienvenido"<<endl;
     cout<<"-------------------------------------"<<endl;
-    int salir=0;
-    while(salir=0){
+    int salir=1;
+    while(salir==1){
         cout<<"1) Juego de mentes\n2) Convertir a binario\n3) Conjugador de verbos regulares\n4) Salir"<<endl;
         cout<<"-------------------------------------"<<endl;
         cout<<"Ingrese el numero: ";
@@ -46,23 +50,103 @@ int main(){
             eje1(ej);
         }
         if(op==2){
+            cout<<"--------------------------------------"<<endl;
+            cout<<"Bienvenido al ejercicio 2"<<endl;
+            cout<<"--------------------------------------"<<endl;
             eje2();
         }
         if(op==3){
         }
         if(op==4){
-            salir=1;
+            salir=0;
         }
     }
     return 0;
 }
 
 void eje2(){
-    
+    cout<<"Ingrese el decimal a convertir: ";
+    int decimal=0;
+    cin>>decimal;
+    int residuo=0;
+    int dividir=0;
+    int antiguo=0;
+    dividir=decimal;
+    string bin="";
+    int* fin=NULL;
+    fin=initI(7);
+    int c=7;
+    if(decimal>0){
+        while(dividir!=1){
+            residuo=dividir%2;
+            dividir=dividir/2;
+            if(residuo==0){
+                fin[c]=residuo;
+                c=c-1;
+                //bin=bin+to_string(residuo);
+            }else{
+                fin[c]=residuo;
+                c=c-1;
+               // bin=bin+to_string(residuo);                
+            }
+           // bin=bin+to_string(1);
+        }
+        fin[c]=residuo;
+        cout<<"Decimal="<<decimal<<"\nBinario=";
+        for(int i=0;i<8;i++){
+            cout<<fin[i];
+        }
+        cout<<endl<<"-------------------------------------------------"<<endl;
+        freeI(fin);
+    }else{
+        dividir=abs(decimal);
+        while(dividir!=1){
+            residuo=dividir%2;
+            dividir=dividir/2;
+            if(residuo==0){
+                fin[c]=residuo;
+                c=c-1;
+            }else{
+                fin[c]=residuo;
+                c=c-1;
+            }
+        }
+        fin[c]=residuo;
+        cout<<"Decimal="<<decimal<<"\nBinario=";
+        for(int i=0;i<8;i++){
+            cout<<fin[i];
+        }
+        cout<<endl<<"Nuevo Binario=";
+        for(int i=0;i<8;i++){
+            if(fin[i]==0){
+               // fin[i]=1;
+                cout<<"1"; 
+                //cout<<fin[i];   
+            }
+            if(fin[i]==1){
+                //fin[i]=0;
+                cout<<"0";
+                //cout<<fin[i];
+            }
+        }
+        cout<<endl<<"------------------------------------------------"<<endl;
+        freeI(fin);
+    }
+   // bin=bin+to_string(1);
+   /* cout<<"Decimal="<<decimal<<"\nBinario Completo="<<bin<<endl;
+    cout<<"----------------------------------------------"<<endl;
+    freeI(fin);*/
+}
+
+void freeI(int* x){
+    delete[] x;
 }
 
 void freeC(char* x){
     delete[] x;
+}
+int* initI(int s){
+    return new int[s];
 }
 
 char* initC(int s){
@@ -78,7 +162,6 @@ void eje1(char* numero){
         num=rand()%9999;
     }
     string cc=to_string(num);
-    cout<<endl<<cc;
     for(int i=0;i<4;i++){
         numero[i]=cc[i];
     }
